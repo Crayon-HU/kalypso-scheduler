@@ -28,7 +28,7 @@ import (
 	"net/url"
 
 	"github.com/go-logr/logr"
-	"github.com/google/go-github/v49/github"
+	"github.com/google/go-github/v68/github"
 	schedulerv1alpha1 "github.com/microsoft/kalypso-scheduler/api/v1alpha1"
 	"golang.org/x/oauth2"
 	"sigs.k8s.io/controller-runtime/pkg/log"

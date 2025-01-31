@@ -86,7 +86,7 @@ func getGitHubClient(ctx context.Context, domainName string) *github.Client {
 	baseURL := getBaseAPIURL(domainName)
 	client := github.NewClient(tc)
 	if baseURL != "https://api.github.com/" {
-		client.BaseURL = baseURL
+		client.BaseURL = &baseURL
 	}
 	return client
 }

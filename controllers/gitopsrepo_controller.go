@@ -35,9 +35,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
+	"github.com/Crayon-HU/kalypso-scheduler/scheduler"
 	"github.com/go-logr/logr"
 	schedulerv1alpha1 "github.com/microsoft/kalypso-scheduler/api/v1alpha1"
-	"github.com/Crayon-HU/kalypso-scheduler/scheduler"
 )
 
 // GitOpsRepoReconciler reconciles a GitOpsRepo object

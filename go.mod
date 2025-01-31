@@ -1,4 +1,4 @@
-module github.com/microsoft/kalypso-scheduler
+module github.com/Crayon-HU/kalypso-scheduler
 
 go 1.19
 
@@ -53,6 +53,7 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
+	github.com/microsoft/kalypso-scheduler v0.0.0-20241216194756-696d534076ea // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect

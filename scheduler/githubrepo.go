@@ -83,10 +83,10 @@ func getGitHubClient(ctx context.Context, domainName string) *github.Client {
 	tc := oauth2.NewClient(ctx, ts)
 
 	// Determine API base URL
-	baseURL = getBaseAPIURL(domainName)
-	client = github.NewClient(tc)
+	baseURL := getBaseAPIURL(domainName)
+	client := github.NewClient(tc)
 	if baseURL != "https://api.github.com/" {
-		client = client.WithEnterpriseURLs(baseURL, baseUrl)
+		client := client.WithEnterpriseURLs(baseURL, baseUrl)
 	}
 	return client
 }
@@ -152,11 +152,11 @@ func (g *githubRepo) CreatePR(prBranchName string, content *schedulerv1alpha1.Re
 func parseRepoURL(repoUrl string) (domainName string, owner, repo *string, err error) {
 	u, err := url.Parse(repoUrl)
 	if err != nil {
-		return nil, nil, nil, err
+		return "", nil, nil, err
 	}
 	urlPart := strings.Split(u.Path, "/")
 	if len(urlPart) < 3 {
-		return nil, nil, nil, errors.New("invalid repo url")
+		return "", nil, nil, errors.New("invalid repo url")
 
 	}
 

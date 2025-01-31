@@ -70,7 +70,7 @@ var (
 
 func getBaseAPIURL(domainName string) string {
 	if domainName == "github.com" {
-		return "https://api.github.com/", nil
+		return "https://api.github.com/"
 	}
 
 	// GitHub Enterprise API base URL (e.g., https://github.example.com/api/v3/)
@@ -86,7 +86,7 @@ func getGitHubClient(ctx context.Context, domainName string) *github.Client {
 	baseURL := getBaseAPIURL(domainName)
 	client := github.NewClient(tc)
 	if baseURL != "https://api.github.com/" {
-		client := github.NewClient(tc,baseURL)
+		client.BaseURL = baseURL
 	}
 	return client
 }

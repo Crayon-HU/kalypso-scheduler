@@ -149,7 +149,7 @@ func (g *githubRepo) CreatePR(prBranchName string, content *schedulerv1alpha1.Re
 }
 
 // implement parse function
-func parseRepoURL(repoUrl string) (domainName, owner, repo string, err error) {
+func parseRepoURL(repoUrl string) (domainName string, owner, repo *string, err error) {
 	u, err := url.Parse(repoUrl)
 	if err != nil {
 		return nil, nil, nil, err
@@ -161,8 +161,8 @@ func parseRepoURL(repoUrl string) (domainName, owner, repo string, err error) {
 	}
 
 	domainName = u.Host
-	owner = urlPart[1]
-	repo = urlPart[2]
+	owner = &urlPart[1]
+	repo = &urlPart[2]
 
 	return domainName, owner, repo, nil
 }

@@ -87,9 +87,7 @@ func getGitHubClient(ctx context.Context, domainName string) *github.Client {
 
 	if domainName == "github.com" {
 		client := github.NewClient(tc)
-	}
-
-	else {
+	} else {
 		client, err := github.NewEnterpriseClient(domainName, domainName, tc)
 	}
 

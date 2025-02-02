@@ -77,16 +77,15 @@ func getBaseAPIURL(domainName string) string {
 	return fmt.Sprintf("https://%s/api/v3/", domainName)
 }
 
-func getGitHubClient(ctx context.Context, domainName string) *github.Client {
+func getGitHubClient(ctx context.Context, domainName *string) *github.Client {
 	token := os.Getenv("GITHUB_AUTH_TOKEN")
 	ts := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: token})
 	tc := oauth2.NewClient(ctx, ts)
 
 	// Determine API base URL
-	baseURL := getBaseAPIURL(domainName)
 	client := github.NewClient(tc)
-	if baseURL != "https://api.github.com/" {
-		client.BaseURL = &baseURL
+	if domainName != "github.com" {
+		client := github.NewEnterpriseClient(domainName, domainName, tc)
 	}
 	return client
 }
@@ -160,7 +159,7 @@ func parseRepoURL(repoUrl string) (domainName string, owner, repo *string, err e
 
 	}
 
-	domainName = u.Host
+	domainName = &urlPart[0]
 	owner = &urlPart[1]
 	repo = &urlPart[2]
 

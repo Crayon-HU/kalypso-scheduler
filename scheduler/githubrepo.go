@@ -91,8 +91,8 @@ func getGitHubClient(ctx context.Context, domainName string) (*github.Client, er
 	} else {
 		client, err = github.NewEnterpriseClient(domainName, domainName, tc)
 		if err != nil {
-            return nil, err
-        }
+			return nil, err
+		}
 	}
 
 	return client, nil
@@ -106,7 +106,7 @@ func NewGithubRepo(ctx context.Context, repo *schedulerv1alpha1.GitOpsRepoSpec) 
 		return nil, err
 	}
 
-	client, err = getGitHubClient(ctx, domainName)
+	client, err := getGitHubClient(ctx, domainName)
 	if err != nil {
 		return nil, err
 	}

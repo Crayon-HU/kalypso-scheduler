@@ -77,7 +77,7 @@ func getBaseAPIURL(domainName string) string {
 	return fmt.Sprintf("https://%s/api/v3/", domainName)
 }
 
-func getGitHubClient(ctx context.Context, domainName *string) *github.Client {
+func getGitHubClient(ctx context.Context, domainName string) *github.Client {
 	token := os.Getenv("GITHUB_AUTH_TOKEN")
 	ts := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: token})
 	tc := oauth2.NewClient(ctx, ts)

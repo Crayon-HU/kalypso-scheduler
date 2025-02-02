@@ -77,7 +77,7 @@ func getBaseAPIURL(domainName string) string {
 	return fmt.Sprintf("https://%s/api/v3/", domainName)
 }
 
-func getGitHubClient(ctx context.Context, domainName string) *github.Client {
+func getGitHubClient(ctx context.Context, domainName string) (*github.Client, error) {
 	token := os.Getenv("GITHUB_AUTH_TOKEN")
 	ts := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: token})
 	tc := oauth2.NewClient(ctx, ts)
@@ -90,9 +90,12 @@ func getGitHubClient(ctx context.Context, domainName string) *github.Client {
 		client = github.NewClient(tc)
 	} else {
 		client, err = github.NewEnterpriseClient(domainName, domainName, tc)
+		if err != nil {
+            return nil, err
+        }
 	}
 
-	return client
+	return client, nil
 }
 
 // new githubRepo function
@@ -103,11 +106,16 @@ func NewGithubRepo(ctx context.Context, repo *schedulerv1alpha1.GitOpsRepoSpec) 
 		return nil, err
 	}
 
+	client, err = getGitHubClient(ctx, domainName)
+	if err != nil {
+		return nil, err
+	}
+
 	return &githubRepo{
 		repo:        repo,
 		sourceOwner: *sourceOwner,
 		sourceRepo:  *sourceRepo,
-		client:      getGitHubClient(ctx, domainName),
+		client:      client,
 		ctx:         ctx,
 		logger:      log.FromContext(ctx),
 	}, nil

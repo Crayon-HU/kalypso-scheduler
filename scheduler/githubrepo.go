@@ -84,11 +84,12 @@ func getGitHubClient(ctx context.Context, domainName string) *github.Client {
 
 	// Determine API base URL
 	var client *github.Client
+	var err error
 
 	if domainName == "github.com" {
-		client := github.NewClient(tc)
+		client = github.NewClient(tc)
 	} else {
-		client, err := github.NewEnterpriseClient(domainName, domainName, tc)
+		client, err = github.NewEnterpriseClient(domainName, domainName, tc)
 	}
 
 	return client

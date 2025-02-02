@@ -83,7 +83,6 @@ func getGitHubClient(ctx context.Context, domainName string) *github.Client {
 	tc := oauth2.NewClient(ctx, ts)
 
 	// Determine API base URL
-	client := nil
 	if domainName == "github.com" {
 		client := github.NewClient(tc)
 	} else {

@@ -86,10 +86,12 @@ func getGitHubClient(ctx context.Context, domainName string) (*github.Client, er
 	var client *github.Client
 	var err error
 
+	baseURL := getBaseAPIURL(domainName)
+
 	if domainName == "github.com" {
 		client = github.NewClient(tc)
 	} else {
-		client, err = github.NewEnterpriseClient(domainName, domainName, tc)
+		client, err = github.NewEnterpriseClient(baseURL, baseURL, tc)
 		if err != nil {
 			return nil, err
 		}

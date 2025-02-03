@@ -36,7 +36,7 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 
 	schedulerv1alpha1 "github.com/microsoft/kalypso-scheduler/api/v1alpha1"
-	"github.com/microsoft/kalypso-scheduler/controllers"
+	"github.com/Crayon-HU/kalypso-scheduler/controllers"
 	//+kubebuilder:scaffold:imports
 )
 

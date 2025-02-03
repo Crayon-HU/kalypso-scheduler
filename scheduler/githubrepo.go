@@ -172,7 +172,7 @@ func parseRepoURL(repoUrl string) (domainName string, owner, repo *string, err e
 
 	}
 
-	domainName = urlPart[0]
+	domainName = u.Host
 	owner = &urlPart[1]
 	repo = &urlPart[2]
 

@@ -41,7 +41,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 
 	schedulerv1alpha1 "github.com/microsoft/kalypso-scheduler/api/v1alpha1"
-	"github.com/microsoft/kalypso-scheduler/scheduler"
+	"github.com/Crayon-HU/kalypso-scheduler/scheduler"
 )
 
 // AssignmentReconciler reconciles a Assignment object
